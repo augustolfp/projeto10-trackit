@@ -8,11 +8,13 @@ import HistoryScreen from "./HistoryScreen/HistoryScreen";
 import React from "react";
 import UserContext from "../contexts/UserContext";
 export default function App() {
-    const [token, setToken] = React.useState("");
+    const [token, setToken] = React.useState({});
+    const [userData, setUserData] = React.useState({});
     console.log(token);
+    console.log(userData);
     return(
         <BrowserRouter>
-            <UserContext.Provider value={{token, setToken}}>
+            <UserContext.Provider value={{token, setToken, userData, setUserData}}>
                 <Routes>
                     <Route path="/" element={<LoginScreen />} />
                     <Route path="/cadastro" element={<RegisterScreen />} />

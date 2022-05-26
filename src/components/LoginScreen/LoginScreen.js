@@ -8,7 +8,7 @@ import axios from "axios";
 
 export default function LoginScreen() {
     const navigate = useNavigate();
-    const {setToken} = React.useContext(UserContext);
+    const {setToken, setUserData} = React.useContext(UserContext);
     const [email, setEmail] = React.useState("");
     const [password, setPassword] = React.useState("");
 
@@ -21,6 +21,7 @@ export default function LoginScreen() {
 
         const loginRequest = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/login", body)
         loginRequest.then(answer => {
+            setUserData(answer.data)    
             setToken({
                 headers: {
                     Authorization: `Bearer ${answer.data.token}`
