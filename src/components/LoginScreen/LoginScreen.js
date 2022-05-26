@@ -2,12 +2,13 @@ import logo from "../../assets/images/logoBig.svg";
 import React from "react";
 import UserContext from "../../contexts/UserContext";
 import styledComponents from "styled-components";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 
 export default function LoginScreen() {
-    const {token, setToken} = React.useContext(UserContext);
+    const navigate = useNavigate();
+    const {setToken} = React.useContext(UserContext);
     const [email, setEmail] = React.useState("");
     const [password, setPassword] = React.useState("");
 
@@ -19,8 +20,16 @@ export default function LoginScreen() {
         }
 
         const loginRequest = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/login", body)
-        loginRequest.then(answer => setToken(answer));
-        loginRequest.catch(answer => console.log(answer));
+        loginRequest.then(answer => {
+            setToken({
+                headers: {
+                    Authorization: `Bearer ${answer.data.token}`
+                }
+            })
+            navigate("/hoje")
+        });
+
+        loginRequest.catch(answer => alert("Ocorreu um erro!"));
 
     }
 
