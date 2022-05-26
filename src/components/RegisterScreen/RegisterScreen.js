@@ -1,9 +1,10 @@
 import logo from "../../assets/images/logoBig.svg";
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 export default function RegisterScreen() {
+    const navigate = useNavigate();
     const [form, setForm] = React.useState({
         email: "",
         password: "",
@@ -28,8 +29,8 @@ export default function RegisterScreen() {
         }
 
         const registerRequest = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/sign-up", body);
-        registerRequest.then(answer => console.log(answer));
-        registerRequest.catch(answer => console.log(answer));
+        registerRequest.then(() => navigate("/"));
+        registerRequest.catch(() => alert("Ocorreu um erro! Tente novamente"));
     }
 
     return(

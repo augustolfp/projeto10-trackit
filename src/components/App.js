@@ -5,16 +5,23 @@ import RegisterScreen from "./RegisterScreen/RegisterScreen";
 import HabitsScreen from "./HabitsScreen/HabitsScreen";
 import TodayScreen from "./TodayScreen/TodayScreen";
 import HistoryScreen from "./HistoryScreen/HistoryScreen";
+import React from "react";
+import UserContext from "../contexts/UserContext";
 export default function App() {
+    const [token, setToken] = React.useState("");
+    console.log(token);
+    console.log("passei por aqui");
     return(
         <BrowserRouter>
-            <Routes>
-                <Route path="/" element={<LoginScreen />} />
-                <Route path="/cadastro" element={<RegisterScreen />} />
-                <Route path="/habitos" element={<HabitsScreen />} />
-                <Route path="/hoje" element={<TodayScreen />} />
-                <Route path="/historico" element={<HistoryScreen />} />
-            </Routes>
+            <UserContext.Provider value={{token, setToken}}>
+                <Routes>
+                    <Route path="/" element={<LoginScreen />} />
+                    <Route path="/cadastro" element={<RegisterScreen />} />
+                    <Route path="/habitos" element={<HabitsScreen />} />
+                    <Route path="/hoje" element={<TodayScreen />} />
+                    <Route path="/historico" element={<HistoryScreen />} />
+                </Routes>
+            </UserContext.Provider>
         </BrowserRouter>
     );
 }
