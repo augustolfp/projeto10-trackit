@@ -1,7 +1,7 @@
 import logo from "../../assets/images/logoBig.svg";
 import React from "react";
 import UserContext from "../../contexts/UserContext";
-import styledComponents from "styled-components";
+import styled from "styled-components";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
@@ -35,14 +35,82 @@ export default function LoginScreen() {
     }
 
     return(
-        <>
-        <img src={logo} />
-        <form onSubmit={handleLogin}>
-            <input type="email" name="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="email" required />
-            <input type="password" name="password" value={password} onChange={e => setPassword(e.target.value)} placeholder="senha" required />
-            <button type="submit">Entrar</button>
-        </form>
-        <Link to="/cadastro">Não tem uma conta? Cadastre-se!</Link>
-        </>
+        <Container>
+            <CenteredDiv>
+                <img src={logo} />
+                <Form onSubmit={handleLogin}>
+                    <input type="email" name="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="email" required />
+                    <input type="password" name="password" value={password} onChange={e => setPassword(e.target.value)} placeholder="senha" required />
+                    <button type="submit">Entrar</button>
+                </Form>
+                <Link to="/cadastro">Não tem uma conta? Cadastre-se!</Link>
+            </CenteredDiv>
+        </Container>
     );
 }
+
+const Container = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100%;
+
+
+`
+
+const Form = styled.form`
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+
+    input {
+        box-sizing: border-box;
+        height: 46px;
+        border: 1px solid #D5D5D5;
+        border-radius: 5px;
+        font-family: 'Lexend Deca', sans-serif;
+        font-size: 20px;
+        margin: 3px 0;
+        padding: 0 6px;
+        ::placeholder {
+            color: #dbdbdb;
+        }
+    }
+
+    button {
+        height: 46px;
+        border-style: none;
+        border-radius: 4px;
+        background-color: #52B6FF;
+        font-family: 'Lexend Deca', sans-serif;
+        font-size:22px;
+        color:white;
+        margin: 3px 0 18px 0;
+    }
+
+`
+
+const CenteredDiv = styled.div`
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 40vh;
+        justify-content: space-between;
+
+        img {
+        width: 180px;
+        }
+
+        a {
+            font-family: 'Lexend Deca', sans-serif;
+        }
+
+        a:link {
+            color: #52B6FF;
+        }
+
+        a:visited {
+            color: #52B6FF;
+        }
+`

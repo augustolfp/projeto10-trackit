@@ -17,6 +17,7 @@ export default function TodayScreen() {
         <>
         <TopBar />
         <div>{today.locale('pt-br').format("dddd, D/M")}</div>
+        
         </>
     );
 }
