@@ -4,6 +4,7 @@ import UserContext from "../../contexts/UserContext";
 import styled from "styled-components";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import BeatLoader from "react-spinners/BeatLoader";
 
 
 export default function LoginScreen() {
@@ -11,9 +12,11 @@ export default function LoginScreen() {
     const {setToken, setUserData} = React.useContext(UserContext);
     const [email, setEmail] = React.useState("");
     const [password, setPassword] = React.useState("");
+    const [isDisabled, setIsDisabled] = React.useState(false);
 
     function handleLogin(event) {
         event.preventDefault();
+        setIsDisabled(() => !isDisabled);
         const body = {
             email,
             password
@@ -39,9 +42,10 @@ export default function LoginScreen() {
             <CenteredDiv>
                 <img src={logo} />
                 <Form onSubmit={handleLogin}>
-                    <input type="email" name="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="email" required />
-                    <input type="password" name="password" value={password} onChange={e => setPassword(e.target.value)} placeholder="senha" required />
-                    <button type="submit">Entrar</button>
+                    <input type="email" name="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="email" disabled={isDisabled} required />
+                    <input type="password" name="password" value={password} onChange={e => setPassword(e.target.value)} placeholder="senha" disabled={isDisabled} required />
+                    <button type="submit" disabled={isDisabled} >{isDisabled ? <BeatLoader color="#FFFFFF" /> : "Entrar"}</button>
+                    
                 </Form>
                 <Link to="/cadastro">Não tem uma conta? Cadastre-se!</Link>
             </CenteredDiv>
@@ -73,9 +77,14 @@ const Form = styled.form`
         font-size: 20px;
         margin: 3px 0;
         padding: 0 6px;
+        
         ::placeholder {
             color: #dbdbdb;
         }
+    }
+
+    input:disabled {
+        opacity: 0.5;
     }
 
     button {
@@ -87,6 +96,10 @@ const Form = styled.form`
         font-size:22px;
         color:white;
         margin: 3px 0 18px 0;
+    }
+
+    button:disabled {
+        opacity: 0.5;
     }
 
 `
