@@ -5,6 +5,7 @@ import axios from "axios";
 import TopBar from "../TopBar/TopBar";
 import styled from "styled-components";
 import HabitBox from "../HabitBox/HabitBox";
+import CreateHabit from "../CreateHabit/CreateHabit";
 
 export default function HabitsScreen() {
     const {token} = React.useContext(UserContext);
@@ -25,6 +26,7 @@ export default function HabitsScreen() {
                 <h2>Meus hábitos</h2>
                 <button>+</button>
             </TopTitle>
+            <CreateHabit />
             {
                 habits.length > 0 ? (
                     habits.map((habit, index) => <HabitBox key={index} {...habit} />)

@@ -1,11 +1,11 @@
 import styled from "styled-components";
 
-export default function DayButton({day, selected}) {
+export default function DayButton({day, selected, click}) {
 
     const days = ["D","S","T","Q","Q","S","S"];
 
     return(
-        <Container selected={selected}>
+        <Container onClick={click} selected={selected}>
             {days[day]}
         </Container>
     );
