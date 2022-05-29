@@ -16,7 +16,7 @@ export default function LoginScreen() {
 
     function handleLogin(event) {
         event.preventDefault();
-        setIsDisabled(() => !isDisabled);
+        setIsDisabled(true);
         const body = {
             email,
             password
@@ -30,10 +30,13 @@ export default function LoginScreen() {
                     Authorization: `Bearer ${answer.data.token}`
                 }
             })
-            navigate("/hoje")
+            navigate("/habitos")
         });
 
-        loginRequest.catch(answer => alert("Ocorreu um erro!"));
+        loginRequest.catch(answer => 
+            {alert("Ocorreu um erro, tente novamente!")
+            setIsDisabled(false)}
+            );
 
     }
 

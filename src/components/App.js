@@ -10,11 +10,9 @@ import UserContext from "../contexts/UserContext";
 export default function App() {
     const [token, setToken] = React.useState({});
     const [userData, setUserData] = React.useState({});
-    console.log(token);
-    console.log(userData);
     return(
-        <BrowserRouter>
-            <UserContext.Provider value={{token, setToken, userData, setUserData}}>
+        <UserContext.Provider value={{token, setToken, userData, setUserData}}>
+            <BrowserRouter>
                 <Routes>
                     <Route path="/" element={<LoginScreen />} />
                     <Route path="/cadastro" element={<RegisterScreen />} />
@@ -22,7 +20,7 @@ export default function App() {
                     <Route path="/hoje" element={<TodayScreen />} />
                     <Route path="/historico" element={<HistoryScreen />} />
                 </Routes>
-            </UserContext.Provider>
-        </BrowserRouter>
+            </BrowserRouter>
+        </UserContext.Provider>
     );
-}
+} 

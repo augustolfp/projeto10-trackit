@@ -1,18 +1,23 @@
 import UserContext from "../../contexts/UserContext";
 import React from "react";
+import {useState, useEffect} from "react";
 import axios from "axios";
 import TopBar from "../TopBar/TopBar";
 import dayjs from "dayjs";
 import "dayjs/locale/pt-br";
 export default function TodayScreen() {
     const {token} = React.useContext(UserContext);
+    const [habits, setHabits] = useState({});
     let today = dayjs();
-    function getHabits() {
+
+    useEffect(() => {
         const habitsRequest = axios.get("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/today", token);
-        habitsRequest.then(answer => console.log(answer));
+        habitsRequest.then(answer => {
+            setHabits(answer.data);
+        });
         habitsRequest.catch(answer => console.log(answer));
-    }
-    getHabits();
+    },[]);
+
     return(
         <>
         <TopBar />
