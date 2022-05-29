@@ -22,13 +22,21 @@ export default function TodayScreen() {
         habitsRequest.catch(answer => console.log(answer));
     },[]);
 
+    function click(props) {
+        const checkHabit = axios.post(`https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${props}/check`,{},token);
+        checkHabit.then(() => console.log("sucesso"));
+        checkHabit.catch(() => console.log("Erro"));
+        console.log(props)
+        console.log(token)
+    }
+
     return(
         <Container>                 
             <TopBar />
             <DateContainer>{today.locale('pt-br').format("dddd, D/M")}</DateContainer>
             {
                 habits.length > 0 && (
-                    habits.map((habit, index) => <HabitStats {...habit} key={index} />)
+                    habits.map((habit, index) => <HabitStats {...habit} key={index} click={click} />)
                     )
             }
         </Container>

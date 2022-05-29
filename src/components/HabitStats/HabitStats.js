@@ -6,6 +6,7 @@ export default function HabitStats(props) {
             <HabitTitle>{props.name}</HabitTitle>
             <Stats>Sequência atual: {props.currentSequence} dias</Stats>
             <Stats>Seu recorde: {props.highestSequence} dias</Stats>
+            <button onClick={() => props.click(props.id)}>check</button>
         </Container>
     );
 }
