@@ -19,20 +19,20 @@ export default function HabitsScreen() {
     },[]);
 
     return(
-        <>
-        {
-            habits.length > 0 && (
-                <Container>
-                <TopBar />
-                <TopTitle>
-                    <h2>Meus hábitos</h2>
-                    <button>+</button>
-                </TopTitle>
-                {habits.map((habit, index) => <HabitBox key={index} {...habit} />)}
-            </Container>
-            )
-        }
-        </>
+        <Container>
+            <TopBar />
+            <TopTitle>
+                <h2>Meus hábitos</h2>
+                <button>+</button>
+            </TopTitle>
+            {
+                habits.length > 0 ? (
+                    habits.map((habit, index) => <HabitBox key={index} {...habit} />)
+                ) : (
+                    <div>Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</div>
+                )
+            }
+        </Container>
     );
 }
 

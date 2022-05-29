@@ -3,11 +3,19 @@ import DayButton from "../DayButton/DayButton";
 
 export default function HabitBox(props) {
     console.log(props)
+
+    function HandleDayButtons() {
+        let buttons = [];
+        for(let i=0;i<7;i++) {
+            buttons.push(<DayButton key={i} day={i} selected={props.days.includes(i)} />);
+        }
+        return buttons;
+    }
     return(
         <Container>
             <h3>{props.name}</h3>
             <Weekdays>
-                {props.days.map((day, index) => <DayButton key={index} day={day} selected={true} /> )}
+                {HandleDayButtons()}
             </Weekdays>
         </Container>
 
