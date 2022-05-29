@@ -9,11 +9,13 @@ export default function TodayScreen() {
     const {token} = React.useContext(UserContext);
     const [habits, setHabits] = useState({});
     let today = dayjs();
+    console.log(habits);
 
     useEffect(() => {
         const habitsRequest = axios.get("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/today", token);
         habitsRequest.then(answer => {
             setHabits(answer.data);
+            console.log(answer.data)
         });
         habitsRequest.catch(answer => console.log(answer));
     },[]);

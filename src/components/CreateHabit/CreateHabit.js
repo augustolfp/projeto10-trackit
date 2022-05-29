@@ -22,8 +22,8 @@ export default function CreateHabit() {
     }
 
     function postHabit() {
-        const selectedDays = days.map((day,index) => day ? index : false);
-        const filteredDays = selectedDays.filter(day => day!=false);
+        const selectedDays = days.map((day,index) => day ? index : undefined);
+        const filteredDays = selectedDays.filter(day => !isNaN(day));
         console.log(filteredDays);
         const body = {
             name: habit,
