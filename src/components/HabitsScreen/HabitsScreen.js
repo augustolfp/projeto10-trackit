@@ -1,18 +1,38 @@
 import UserContext from "../../contexts/UserContext";
 import React from "react";
+import {useState, useEffect} from "react";
 import axios from "axios";
 import TopBar from "../TopBar/TopBar";
 import styled from "styled-components";
+import HabitBox from "../HabitBox/HabitBox";
 
 export default function HabitsScreen() {
+    const {token} = React.useContext(UserContext);
+    const [habits, setHabits] = useState([]);
+
+    useEffect(() => {
+        const habitsRequest = axios.get("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits", token);
+        habitsRequest.then(answer => {
+            setHabits(answer.data);
+        });
+        habitsRequest.catch(answer => console.log(answer));
+    },[]);
+
     return(
-        <Container>
-            <TopBar />
-            <TopTitle>
-                <h2>Meus hábitos</h2>
-                <button>+</button>
-            </TopTitle>
-        </Container>
+        <>
+        {
+            habits.length > 0 && (
+                <Container>
+                <TopBar />
+                <TopTitle>
+                    <h2>Meus hábitos</h2>
+                    <button>+</button>
+                </TopTitle>
+                {habits.map((habit, index) => <HabitBox key={index} {...habit} />)}
+            </Container>
+            )
+        }
+        </>
     );
 }
 
@@ -47,4 +67,5 @@ const Container = styled.div`
     align-items: center;
     height: 100vh;
     width: 100%;
+    background-color: #F2F2F2;
 `
