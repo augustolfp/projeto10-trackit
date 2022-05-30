@@ -3,6 +3,8 @@ import DayButton from "../DayButton/DayButton";
 import UserContext from "../../contexts/UserContext";
 import React from "react";
 import axios from "axios";
+import IonIcon from "@reacticons/ionicons";
+
 
 export default function HabitBox(props) {
     const {token} = React.useContext(UserContext);
@@ -30,7 +32,9 @@ export default function HabitBox(props) {
                         {HandleDayButtons()}
                     </Weekdays>
                 </div>
-                <button onClick={() => deleteHabit(props.id)}>x</button>
+                <button onClick={() => deleteHabit(props.id)}>
+                    <IonIcon name="trash-outline" />
+                </button>
             </CenteredDiv>
         </Container>
 
@@ -50,7 +54,7 @@ const CenteredDiv = styled.div`
     justify-content: space-between;
     background-color: white;
     margin-bottom: 10px;
-    padding: 15px;
+    padding: 15px 5px 15px 15px;
     border-radius: 5px;
 
     h3 {
@@ -58,6 +62,18 @@ const CenteredDiv = styled.div`
         font-size: 20px;
         color: #666666;
         margin-bottom: 10px;
+    }
+
+    button {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        border-style: none;
+        background-color: white;
+
+        * {
+            font-size: 20px;
+        }
     }
 `
 
