@@ -44,7 +44,7 @@ export default function TodayScreen() {
         <Container>                 
             <TopBar />
             <DateContainer>{today.locale('pt-br').format("dddd, D/M")}</DateContainer>
-            <div>{percentadeDone}% dos hábitos concluidos</div>
+            <PercentageBox>{percentadeDone}% dos hábitos concluidos</PercentageBox>
             {
                 habits.length > 0 && (
                     habits.map((habit, index) => <HabitStats {...habit} key={index} click={click} />)
@@ -72,4 +72,10 @@ const DateContainer = styled.div`
     font-family: 'Lexend Deca', sans-serif;
     font-size: 23px;
     color: #126ba5;
+`
+
+const PercentageBox = styled.div`
+    font-family: 'Lexend Deca', sans-serif;
+    font-size: 18px;
+    color: #bababa;
 `
