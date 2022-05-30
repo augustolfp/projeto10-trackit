@@ -14,7 +14,6 @@ export default function TodayScreen() {
     const [updated, setUpdated] = useState(true);
     const [percentadeDone, setPercentageDone] = React.useState(0);
     let today = dayjs();
-    console.log(habits);
 
     function handleSuccess(answer) {
         setHabits(answer.data);
@@ -33,10 +32,17 @@ export default function TodayScreen() {
         habitsRequest.catch(answer => console.log(answer));
     },[updated]);
 
-    function click(props) {
-        const checkHabit = axios.post(`https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${props}/check`,{},token);
-        checkHabit.then(() => setUpdated(!updated));
-        checkHabit.catch(() => console.log("Erro"));
+    function click(id, status) {
+        if(status) {
+            const uncheckHabit = axios.post(`https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${id}/uncheck`,{},token);
+            uncheckHabit.then(() => setUpdated(!updated));
+            uncheckHabit.catch(() => console.log("Erro"));
+        }
+        else {
+            const checkHabit = axios.post(`https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${id}/check`,{},token);
+            checkHabit.then(() => setUpdated(!updated));
+            checkHabit.catch(() => console.log("Erro"));
+        }
         
     }
 
@@ -44,7 +50,7 @@ export default function TodayScreen() {
         <Container>                 
             <TopBar />
             <DateContainer>{today.locale('pt-br').format("dddd, D/M")}</DateContainer>
-            <PercentageBox>{percentadeDone}% dos hábitos concluidos</PercentageBox>
+            <PercentageBox>{isNaN(percentadeDone) ? "0" : percentadeDone}% dos hábitos concluidos</PercentageBox>
             {
                 habits.length > 0 && (
                     habits.map((habit, index) => <HabitStats {...habit} key={index} click={click} />)

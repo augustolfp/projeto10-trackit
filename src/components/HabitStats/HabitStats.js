@@ -10,9 +10,9 @@ export default function HabitStats(props) {
                 <Stats>Sequência atual: {props.currentSequence} dias</Stats>
                 <Stats>Seu recorde: {props.highestSequence} dias</Stats>
             </TextContainer>
-            <button onClick={() => props.click(props.id)}>
+            <CheckButton done={props.done} onClick={() => props.click(props.id, props.done)}>
                 <IonIcon name="checkmark" />
-            </button>
+            </CheckButton>
         </Container>
     );
 }
@@ -24,18 +24,6 @@ const Container = styled.div`
     background-color: white;
     margin-top: 10px;
     padding: 14px;
-
-    button {
-        width: 70px;
-        height: 70px;
-        border-style: none;
-        border-radius: 5px;
-
-        * {
-            font-size: 42px;
-            color: white;
-        }
-    }
 `
 
 const TextContainer = styled.div`
@@ -53,4 +41,17 @@ const Stats = styled.div`
     font-family: 'Lexend Deca', sans-serif;
     color: #666666;
     font-size: 13px;
+`
+
+const CheckButton = styled.button`
+    width: 70px;
+    height: 70px;
+    border-style: none;
+    border-radius: 5px;
+    background-color: ${props => props.done ? "#8FC549" : "#EBEBEB"};
+
+    * {
+        font-size: 42px;
+        color: white;
+    }
 `
