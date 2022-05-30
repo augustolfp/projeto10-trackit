@@ -24,4 +24,5 @@ const Container = styled.div`
     font-size: 20px;
     color: ${props => props.selected ? "white" : "#DBDBDB"};
     background-color: ${props => props.selected ? "#DBDBDB" : "white"};
+    margin-right: 4px;
 `

@@ -3,6 +3,7 @@ import React from "react";
 import {useState, useEffect} from "react";
 import axios from "axios";
 import TopBar from "../TopBar/TopBar";
+import BottomBar from "../BottomBar/BottomBar";
 import dayjs from "dayjs";
 import "dayjs/locale/pt-br";
 import HabitStats from "../HabitStats/HabitStats";
@@ -37,15 +38,18 @@ export default function TodayScreen() {
                     habits.map((habit, index) => <HabitStats {...habit} key={index} click={click} />)
                     )
             }
+            <BottomBar />
         </Container>
     );
 }
 
 const Container = styled.div`
+    box-sizing: border-box;
+    margin: 70px 0;
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 100vh;
+    height: 100%;
     width: 100%;
     background-color: #F2F2F2;
 
