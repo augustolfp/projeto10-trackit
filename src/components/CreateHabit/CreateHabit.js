@@ -29,20 +29,16 @@ export default function CreateHabit() {
         setIsDisabled(true);
         const selectedDays = days.map((day,index) => day ? index : undefined);
         const filteredDays = selectedDays.filter(day => !isNaN(day));
-        console.log(filteredDays);
         const body = {
             name: habit,
             days: filteredDays
         }
-        console.log(body)
         const addHabit = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits", body, token);
 
         addHabit.then(() => {
-            console.log("sucesso");
             setIsDisabled(false);
         });
         addHabit.catch(() => {
-            console.log("Falhou");
             setIsDisabled(false);
         });
     }

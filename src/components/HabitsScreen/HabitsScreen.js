@@ -19,7 +19,7 @@ export default function HabitsScreen() {
             setHabits(answer.data);
         });
         habitsRequest.catch(answer => console.log(answer));
-    },[]);
+    },[<CreateHabit />]);
 
     return(
         <Container>
@@ -33,7 +33,7 @@ export default function HabitsScreen() {
                 habits.length > 0 ? (
                     habits.map((habit, index) => <HabitBox key={index} {...habit} />)
                 ) : (
-                    <div>Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</div>
+                    <h4>Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</h4>
                 )
             }
             <BottomBar />
@@ -73,7 +73,13 @@ const Container = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 100%;
+    height: 100vh;
     width: 100%;
     background-color: #F2F2F2;
+
+    h4 {
+        font-family: 'Lexend Deca', sans-serif;
+        font-size: 18px;
+        color: #666666;
+    }
 `
