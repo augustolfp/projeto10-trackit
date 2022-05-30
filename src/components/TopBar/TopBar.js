@@ -7,14 +7,19 @@ export default function TopBar() {
     return (
         <Container>
             <div>
-                TrackIt
+                <TitleContainer>
+                    TrackIt
+                </TitleContainer>
+                <img src={userData.image} />
             </div>
-            <img src={userData.image} />
         </Container>
     );
 }
 
 const Container = styled.div`
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 70px;
     background-color: #126BA5;
@@ -24,16 +29,31 @@ const Container = styled.div`
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
 
     div {
-        max-width: 360px;
+        box-sizing: border-box;
+        width: 450px;
         display: flex;
         align-items: center;
         justify-content: space-between;
-        font-family: 'Playball', cursive;
-        color: white;
-        font-size: 40px;
+        padding: 0 15px;
+
     }
 
     img {
-        height: 100%;
+        height: 50px;
+        width: 50px;
+        object-fit: cover;
+        border-radius:100px;
     }
+
+    @media (max-width: 450px) {
+        div {
+            width: 100vw;
+        }
+    }
+`
+
+const TitleContainer = styled.div`
+    font-family: 'Playball', cursive;
+    color: white;
+    font-size: 40px;
 `
