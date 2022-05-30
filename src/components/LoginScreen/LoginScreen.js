@@ -30,7 +30,7 @@ export default function LoginScreen() {
                     Authorization: `Bearer ${answer.data.token}`
                 }
             })
-            navigate("/habitos")
+            navigate("/hoje")
         });
 
         loginRequest.catch(answer => 

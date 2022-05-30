@@ -4,8 +4,6 @@ import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 export default function BottomBar() {
-    const navigate = useNavigate();
-    const {userData} = React.useContext(UserContext);
     return(
         <Container>
             <div>
@@ -42,5 +40,19 @@ const Container = styled.div`
             width: 100vw;
         }
     }
+
+    a {
+            font-family: 'Lexend Deca', sans-serif;
+            font-size: 18px;
+            text-decoration: none;
+        }
+
+        a:link {
+            color: #52B6FF;
+        }
+
+        a:visited {
+            color: #52B6FF;
+        }
 
 `

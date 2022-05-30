@@ -57,10 +57,12 @@ export default function CreateHabit() {
 }
 
 const Container = styled.div`
+    box-sizing: border-box;
     background-color: white;
     margin: 18px;
     padding: 12px 16px;
     border-radius: 5px;
+    width: 300px;
     
     input {
         box-sizing: border-box;

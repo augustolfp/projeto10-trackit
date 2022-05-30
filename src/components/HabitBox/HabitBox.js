@@ -30,7 +30,7 @@ export default function HabitBox(props) {
                         {HandleDayButtons()}
                     </Weekdays>
                 </div>
-                <button onClick={() => deleteHabit(props.id)}>Delete</button>
+                <button onClick={() => deleteHabit(props.id)}>x</button>
             </CenteredDiv>
         </Container>
 
@@ -44,14 +44,15 @@ const Container = styled.div`
 `
 
 const CenteredDiv = styled.div`
+    box-sizing: border-box;
+    width: 300px;
     display: flex;
     justify-content: space-between;
     background-color: white;
-    width: 340px;
     margin-bottom: 10px;
     padding: 15px;
     border-radius: 5px;
-    
+
     h3 {
         font-family: 'Lexend Deca', sans-serif;
         font-size: 20px;
