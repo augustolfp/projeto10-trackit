@@ -1,9 +1,9 @@
-import logo from "../../assets/images/logoBig.svg";
 import React from "react";
 import UserContext from "../../contexts/UserContext";
 import styled from "styled-components";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import LoginTemplate from "../LoginTemplate/LoginTemplate";
 import BeatLoader from "react-spinners/BeatLoader";
 
 
@@ -30,7 +30,7 @@ export default function LoginScreen() {
                     Authorization: `Bearer ${answer.data.token}`
                 }
             })
-            navigate("/hoje")
+            navigate("/habitos")
         });
 
         loginRequest.catch(answer => 
@@ -41,30 +41,16 @@ export default function LoginScreen() {
     }
 
     return(
-        <Container>
-            <CenteredDiv>
-                <img src={logo} />
-                <Form onSubmit={handleLogin}>
-                    <input type="email" name="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="email" disabled={isDisabled} required />
-                    <input type="password" name="password" value={password} onChange={e => setPassword(e.target.value)} placeholder="senha" disabled={isDisabled} required />
-                    <button type="submit" disabled={isDisabled} >{isDisabled ? <BeatLoader color="#FFFFFF" /> : "Entrar"}</button>
-                    
-                </Form>
-                <Link to="/cadastro">Não tem uma conta? Cadastre-se!</Link>
-            </CenteredDiv>
-        </Container>
+        <LoginTemplate>
+            <Form onSubmit={handleLogin}>
+                <input type="email" name="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="email" disabled={isDisabled} required />
+                <input type="password" name="password" value={password} onChange={e => setPassword(e.target.value)} placeholder="senha" disabled={isDisabled} required />
+                <button type="submit" disabled={isDisabled} >{isDisabled ? <BeatLoader color="#FFFFFF" /> : "Entrar"}</button>    
+            </Form>
+            <Link to="/cadastro">Não tem uma conta? Cadastre-se!</Link>
+        </LoginTemplate>
     );
 }
-
-const Container = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    width: 100%;
-
-
-`
 
 const Form = styled.form`
     display: flex;
@@ -105,28 +91,4 @@ const Form = styled.form`
         opacity: 0.5;
     }
 
-`
-
-const CenteredDiv = styled.div`
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        height: 40vh;
-        justify-content: space-between;
-
-        img {
-        width: 180px;
-        }
-
-        a {
-            font-family: 'Lexend Deca', sans-serif;
-        }
-
-        a:link {
-            color: #52B6FF;
-        }
-
-        a:visited {
-            color: #52B6FF;
-        }
 `

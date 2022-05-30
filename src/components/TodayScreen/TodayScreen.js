@@ -26,8 +26,6 @@ export default function TodayScreen() {
         const checkHabit = axios.post(`https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${props}/check`,{},token);
         checkHabit.then(() => console.log("sucesso"));
         checkHabit.catch(() => console.log("Erro"));
-        console.log(props)
-        console.log(token)
     }
 
     return(

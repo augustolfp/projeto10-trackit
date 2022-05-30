@@ -17,6 +17,7 @@ export default function HabitBox(props) {
             <Weekdays>
                 {HandleDayButtons()}
             </Weekdays>
+            <button>Delete</button>
         </Container>
 
     );
@@ -26,6 +27,8 @@ const Container = styled.div`
     display: flex;
     flex-direction: column;
     background-color: white;
+    margin-bottom:10px;
+
     h3 {
         font-family: 'Lexend Deca', sans-serif;
         font-size: 20px;
